@@ -10,7 +10,7 @@ mongoose.connect(
     () => console.log("Connected to database")
 )
 
-const port = 3000
+const port = process.env.PORT || 5000
 // body parser
 app.use(express.json())
 
