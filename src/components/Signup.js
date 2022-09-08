@@ -1,9 +1,12 @@
 import React from 'react'
 import { useForm } from '@mantine/form';
-import { NumberInput, TextInput, Button, PasswordInput } from '@mantine/core';
+import { TextInput, PasswordInput } from '@mantine/core';
 import logo from '../assets/img/illustration.svg'
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
+    const navigate = useNavigate()
     const form = useForm({
         initialValues: { firstname: '', lastname: "", phone: '', email: '', password: "", confirmPassword: '' },
 
@@ -18,12 +21,30 @@ const Signup = () => {
         },
     });
 
-    const handleSubmit = form.onSubmit(values => { 
+    const url = 'http://localhost:5001/api/signup';
+
+    const handleSubmit = form.onSubmit( async (values) => { 
         const {firstname, lastname, phone, email, password, confirmPassword} = values
-        
+        const data = {
+            firstname,
+            lastname,
+            phone,
+            email,
+            password
+        }
+
         if(password.length < 6) return form.setErrors({password: "Mot de passe court, au moins 6 caractères"})
 
-        if(password !== confirmPassword) return form.setErrors({ confirmPassword: 'Les mots de passe doivent correspondre'})       
+        if(password !== confirmPassword) return form.setErrors({ confirmPassword: 'Les mots de passe doivent correspondre'})     
+        
+        try{
+            const createdUser = await axios.post(url, data)
+            console.log(createdUser.data, ' logged');
+            navigate('/login')
+        }
+        catch(err){
+            form.setErrors({email: err.response.data.error})
+        }
             
         // console.log(values);
     })
@@ -37,7 +58,7 @@ const Signup = () => {
             <div className='form-right'>
                 <h1>Insription</h1>
                 <p>Créer votre compte</p>
-                <span>Vous avez déjà un compte ? Connectez-vous</span>
+                <span>Vous avez déjà un compte ? <Link to="/login">Connectez-vous</Link></span>
                 <form onSubmit={handleSubmit}>
                     <TextInput label="Prénom" placeholder="Prénom" {...form.getInputProps('firstname')} />
                     <TextInput mt="md" label="Nom" placeholder="Nom" {...form.getInputProps('lastname')} />

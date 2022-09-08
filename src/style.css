@@ -40,16 +40,33 @@
 .form-left img {
     width: 100%;
     margin-top: 2rem;
+    margin-left: -90px;
 }
 
 input {
     outline: red !important;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
 }
 
 .btn-submit{
-    padding: 1rem;
+    padding: 0.8rem;
     border: none;
     background-color: #DB3C4E;
     color: white;
     cursor: pointer;
+}
+
+@media (max-width: 750px){
+    .form-signup--container{
+        display: block;
+    }
+
+    .form-left {
+        display: none;
+    }
+
+    .form-right{
+        width: 100%;
+    }
 }

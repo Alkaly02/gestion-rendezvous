@@ -3,6 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const userRoutes = require('./routes/UserRoutes')
+const cors = require('cors')
+
+app.use(cors())
 
 // database connexion
 mongoose.connect(

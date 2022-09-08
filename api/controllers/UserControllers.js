@@ -8,13 +8,17 @@ module.exports.signup = async (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
+    const {email} = user
+    const findUser = await UserModel.find({email})
+    if(findUser.length){
+        return res.status(402).send({error: "L'utilisateur exist deja"})
+    }
     try {
         const createdUser = await UserModel.create(user)
-        res.status(200).send(createdUser)
+        res.status(200).json(createdUser)
     }
     catch (err) {
         res.status(400).send(err)
-
     }
 }
 
@@ -29,11 +33,11 @@ module.exports.login = async (req, res) => {
         if (user.length) {
          return res.send(user)
         }
-        throw new Error("Utilisateur introuvable")
+        throw new Error("L'utilisateur n'existe pas")
     }
     catch (error) {
-        console.log(error);
-        res.status(400).json({error: "Utilisateur introuvable"})
+        // console.log(error);
+        res.status(400).json({error: "L'utilisateur n'existe pas"})
     }
 }
 
