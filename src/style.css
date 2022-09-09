@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     /* gap: 2rem; */
-    height: 100vh;
+    height: 110vh;
 }
 
 .form-signup--container h1, .form-signup--container p, .form-signup--container span {

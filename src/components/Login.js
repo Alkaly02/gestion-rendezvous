@@ -4,6 +4,7 @@ import { TextInput, PasswordInput } from '@mantine/core';
 import logo from '../assets/img/illustration.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import GoogleButton from './GoogleButton';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -56,7 +57,7 @@ const Login = () => {
                         {...form.getInputProps('password')}
                     />
                     <button style={{ width: "100%", marginTop: '1.5rem' }} className='btn-submit' type="submit">Connexion</button>
-                    {/* <button type="">S'inscrire avec </button> */}
+                    <GoogleButton>Connexion avec google</GoogleButton>
                 </form>
             </div>
         </div>
