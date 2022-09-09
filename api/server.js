@@ -17,9 +17,15 @@ app.use(cors())
 connectToMongoDB()
 
 const port = process.env.PORT || 5000
+
 // body parser
 app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 app.use('/api', userRoutes)
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('../client/build'))
+}
 
 app.listen(port, () => console.log("The server is running on port : ", port))
