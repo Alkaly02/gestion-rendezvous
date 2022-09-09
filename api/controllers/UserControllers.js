@@ -1,6 +1,9 @@
 const UserModel = require('../model/UserModel')
+require('../config/auth')
 
-module.exports.signup = async (req, res) => {
+// @desc: dignup
+// @route: /api/signup
+const signup = async (req, res) => {
     const user = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -22,11 +25,15 @@ module.exports.signup = async (req, res) => {
     }
 }
 
-module.exports.signupWithGoogle = () => {
-    
+// @desc: dignup
+// @route: /api/signup
+const signupWithGoogle = (req, res) => {
+    res.send('<a href="/api/auth/google">Authentication with Google</a>')
 }
 
-module.exports.login = async (req, res) => {
+// @desc: login
+// @route: /api/login
+const login = async (req, res) => {
     const { email, password } = req.body
     const user = await UserModel.find({ email, password })
     try {
@@ -41,6 +48,13 @@ module.exports.login = async (req, res) => {
     }
 }
 
-module.exports.loginWithGoogle = () => {
+const loginWithGoogle = () => {
     
+}
+
+module.exports = {
+    login,
+    loginWithGoogle,
+    signup,
+    signupWithGoogle
 }

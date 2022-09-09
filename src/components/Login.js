@@ -55,7 +55,7 @@ const Login = () => {
                         // withAsterisk
                         {...form.getInputProps('password')}
                     />
-                    <button style={{ width: "100%", marginTop: '1.5rem' }} className='btn-submit' type="submit">Inscrivez-vous</button>
+                    <button style={{ width: "100%", marginTop: '1.5rem' }} className='btn-submit' type="submit">Connexion</button>
                     {/* <button type="">S'inscrire avec </button> */}
                 </form>
             </div>

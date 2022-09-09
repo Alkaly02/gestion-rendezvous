@@ -83,6 +83,7 @@ const Signup = () => {
                         {...form.getInputProps('confirmPassword')}
                     />
                     <button style={{ width: "100%", marginTop: '1.5rem' }} className='btn-submit' type="submit">Inscrivez-vous</button>
+                    <a href="http://localhost:5001/api/auth/google">Inscription avec google</a>
                 </form>
             </div>
         </div>
